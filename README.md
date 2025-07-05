@@ -112,27 +112,6 @@ JOIN Status_Imovel s ON i.fk_id_status = s.id_status
 WHERE s.descricao_status = 'Disponível para venda';
 
 
-```sql
--- Buscar imóveis com valor entre 300.000 e 500.000
-SELECT e.logradouro, e.numero, e.bairro, i.valor 
-FROM Endereco e
-JOIN Imovel i ON e.id_endereco = i.fk_id_endereco
-WHERE i.valor BETWEEN 300000 AND 500000;
-
--- Buscar usuários com perfil administrador ou cliente
-SELECT nome, email, fk_Perfil_id 
-FROM Usuario 
-WHERE fk_Perfil_id IN (1, 3);
-
--- Buscar imóveis disponíveis para venda ou já vendidos
-SELECT i.id_imovel, i.tipo, i.valor, s.descricao_status
-FROM Imovel i
-JOIN Status_Imovel s ON i.fk_id_status = s.id_status
-WHERE s.id_status IN (1, 3);
-```
-
----
-
 ## 10. Engenharia Reversa do MySQL
 
 *(espaço reservado para documentação da engenharia reversa)*
