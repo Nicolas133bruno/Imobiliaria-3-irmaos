@@ -145,7 +145,7 @@ CREATE TABLE Usuario (
     login_usu VARCHAR(50),
     senha_usu VARCHAR(100),
     fk_Perfil_id INT,
-    FOREIGN KEY (fk_Perfil_id) REFERENCES Perfil(id_Perf)  -- Corrigido para id_Perf
+    FOREIGN KEY (fk_Perfil_id) REFERENCES Perfil(id_Perf) 
 );
 
 CREATE TABLE Corretor (
