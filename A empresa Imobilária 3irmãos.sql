@@ -172,3 +172,9 @@ INSERT INTO Contrato_Venda (id_contrato_venda, tipo_venda, data_inicio, data_fim
 (2, 'Financiado', '2023-04-05', '2023-06-05', 240000.00, 10, 1),
 (3, 'À vista', '2023-05-15', '2023-05-15', 820000.00, 6, 3);
 
+SELECT i.id_imovel, i.tipo, i.valor, s.descricao_status
+FROM Imovel i
+JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+WHERE s.id_status IN (1, 3);
+
+
