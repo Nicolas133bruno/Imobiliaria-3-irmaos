@@ -17,7 +17,9 @@
 6. Modelo Lógico Relacional  
 7. Modelo Lógico Reverso  
 8. Scripts MySQL  
-9. Consultas SQL  
+9. Consultas SQL
+10.  Projeto Docker e Aplicação Java
+11.   GitHub Actions para CI/CD  
 
 ---
 
@@ -337,6 +339,8 @@ where valor_mensalidade > 1500;
 ```
 ## 10. Projeto Docker e Aplicação Java
 
+Docker-compose.yml
+
 ```yaml
 version: "3.8"
 
@@ -363,6 +367,9 @@ services:
       DB_USER: root
       DB_PASS: rootpassword
 ```
+
+Dockerfile
+
 ```Dockerfile
 FROM eclipse-temurin:17-jdk-alpine AS builder
 
@@ -383,6 +390,9 @@ COPY --from=builder /app/MinhaApp.class .
 
 CMD ["java", "-cp", ".:mysql-connector-java-8.0.30.jar", "MinhaApp"]
 ````
+
+MinhaApp.java
+
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -416,7 +426,8 @@ public class MinhaApp {
     }
 }
 ```
-11. GitHub Actions para CI/CD
+
+## 11. GitHub Actions para CI/CD
 ```yaml
 name: Docker Image CI
 
