@@ -10,7 +10,6 @@ public class MinhaApp {
         String password = System.getenv("DB_PASS");
 
         try {
-            // Carregar driver MySQL (opcional no Java 8+)
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection conn = DriverManager.getConnection(url, user, password);
