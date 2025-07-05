@@ -7,7 +7,6 @@ COPY mysql-connector-java-8.0.30.jar .
 
 RUN javac -cp mysql-connector-java-8.0.30.jar MinhaApp.java
 
-# Stage 2: Runtime
 FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
