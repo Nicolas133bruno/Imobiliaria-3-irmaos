@@ -65,7 +65,7 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 
 ## 4. Logo
 
-*(espaço reservado para inserir o logo)*
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/nqyL0YNj/Captura-de-tela-2025-07-04-215039.png" alt="Captura-de-tela-2025-07-04-215039" border="0"></a>
 
 ---
 
@@ -105,7 +105,12 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 
 ## 9. Consultas (SELECT)
 
-Exemplos de consultas para relatórios e análise dos dados:
+
+select i.id_imovel, i.tipo, i.valor, s.descricao_status
+FROM Imovel i
+JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+WHERE s.descricao_status = 'Disponível para venda';
+
 
 ```sql
 -- Buscar imóveis com valor entre 300.000 e 500.000
