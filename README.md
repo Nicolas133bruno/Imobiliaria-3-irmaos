@@ -331,8 +331,107 @@ FROM Imovel i
 JOIN Status_Imovel s ON i.fk_id_status = s.id_status
 WHERE s.descricao_status = 'Disponível para venda';
 
-
 select id_contrato_alug, valor_mensalidade
 from Contrato_Aluguel
 where valor_mensalidade > 1500;
+```
+## 10. Projeto Docker e Aplicação Java
+
+```yaml
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: Imobiliaria
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+  app:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: Imobiliaria
+      DB_USER: root
+      DB_PASS: rootpassword
+```
+```Dockerfile
+FROM eclipse-temurin:17-jdk-alpine AS builder
+
+WORKDIR /app
+
+COPY MinhaApp.java .
+COPY mysql-connector-java-8.0.30.jar .
+
+RUN javac -cp mysql-connector-java-8.0.30.jar MinhaApp.java
+
+# Stage 2: Runtime
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/mysql-connector-java-8.0.30.jar .
+COPY --from=builder /app/MinhaApp.class .
+
+CMD ["java", "-cp", ".:mysql-connector-java-8.0.30.jar", "MinhaApp"]
+````
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class MinhaApp {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://" + System.getenv("DB_HOST") + ":" + System.getenv("DB_PORT") + "/" + System.getenv("DB_NAME");
+        String user = System.getenv("DB_USER");
+        String password = System.getenv("DB_PASS");
+
+        try {
+            // Carregar driver MySQL (opcional no Java 8+)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Usuario LIMIT 3");
+
+            while(rs.next()){
+                System.out.println("Usuário: " + rs.getString("nome") + ", Email: " + rs.getString("email"));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+11. GitHub Actions para CI/CD
+```yaml
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 ```
