@@ -105,12 +105,11 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 
 ## 9. Consultas (SELECT)
 
-
-select i.id_imovel, i.tipo, i.valor, s.descricao_status
-FROM Imovel i
-JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+```sql
+SELECT i.id_imovel, i.tipo, i.valor, s.descricao_status 
+FROM Imovel i 
+JOIN Status_Imovel s ON i.fk_id_status = s.id_status 
 WHERE s.descricao_status = 'Disponível para venda';
-
 
 ## 10. Engenharia Reversa do MySQL
 
