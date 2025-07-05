@@ -99,7 +99,7 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 
 ## 8. MySQL - Script do Banco de Dados
 ````
-(Inserir aqui o MY SQL
+*(Inserir aqui o MY SQL)*
 ````
 ---
 
