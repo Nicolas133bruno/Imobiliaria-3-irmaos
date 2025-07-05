@@ -125,7 +125,7 @@ id_imovel referencia Imovel
 
 ## 8. Scripts MySQL
 
-````
+````sql
 CREATE DATABASE Imobiliaria;
 USE Imobiliaria;
 
@@ -319,4 +319,8 @@ WHERE u.fk_Perfil_codPerf IN (1, 3);
 select i.id_imovel, i.tipo, i.valor, s.descricao_status
 FROM Imovel i
 JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+WHERE s.descricao_status = 'Disponível para venda';
+
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor);
 ```
