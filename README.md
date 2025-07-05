@@ -145,7 +145,7 @@ CREATE TABLE Usuario (
     login_usu VARCHAR(50),
     senha_usu VARCHAR(100),
     fk_Perfil_id INT,
-    FOREIGN KEY (fk_Perfil_id) REFERENCES Perfil(id_Perf) 
+    FOREIGN KEY (fk_Perfil_id) REFERENCES Perfil(id_Perf)  -- Corrigido para id_Perf
 );
 
 CREATE TABLE Corretor (
@@ -300,6 +300,20 @@ INSERT INTO Contrato_Venda (id_contrato_venda, tipo_venda, data_inicio, data_fim
 (2, 'Financiado', '2023-04-05', '2023-06-05', 240000.00, 10, 1),
 (3, 'À vista', '2023-05-15', '2023-05-15', 820000.00, 6, 3);
 
+
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor);
+
+
+select i.id_imovel, i.tipo, i.valor, s.descricao_status
+FROM Imovel i
+JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+WHERE s.descricao_status = 'Disponível para venda';
+
+
+select id_contrato_alug, valor_mensalidade
+from Contrato_Aluguel
+where valor_mensalidade > 1500;
 ````
 ---
 
@@ -308,19 +322,17 @@ INSERT INTO Contrato_Venda (id_contrato_venda, tipo_venda, data_inicio, data_fim
 
 
 ```sql
-SELECT e.logradouro, e.numero, e.bairro, e.valor 
-FROM Endereco_IMOVEL e 
-WHERE e.valor BETWEEN 300000 AND 500000;
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor);
 
-SELECT u.nome, u.email, u.fk_Perfil_codPerf 
-FROM Usuario u 
-WHERE u.fk_Perfil_codPerf IN (1, 3);
 
 select i.id_imovel, i.tipo, i.valor, s.descricao_status
 FROM Imovel i
 JOIN Status_Imovel s ON i.fk_id_status = s.id_status
 WHERE s.descricao_status = 'Disponível para venda';
 
-select * from Usuario
-where id_usuario IN (select fk_usuario_id from Corretor);
+
+select id_contrato_alug, valor_mensalidade
+from Contrato_Aluguel
+where valor_mensalidade > 1500;
 ```
