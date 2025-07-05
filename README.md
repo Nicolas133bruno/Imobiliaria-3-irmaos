@@ -38,6 +38,6 @@ WHERE s.id_status IN (1, 3);
 
 ## Contato
 
-Para dúvidas, entre em contato com o responsável pelo projeto.
+Para dúvidas, entre em contato com o Felipe Marques,Heitor moreira e Nicolas Bruno  
 
 ---
