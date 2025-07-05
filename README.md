@@ -390,6 +390,16 @@ COPY --from=builder /app/MinhaApp.class .
 
 CMD ["java", "-cp", ".:mysql-connector-java-8.0.30.jar", "MinhaApp"]
 ````
+env
+
+````.env
+MYSQL_ROOT_PASSWORD=Felipe123
+MYSQL_DATABASE=imobiliaria
+MYSQL_USER=nicolas
+MYSQL_PASSWORD=@
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+````
 
 MinhaApp.java
 
