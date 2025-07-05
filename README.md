@@ -64,8 +64,7 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 ---
 
 ## 4. Logo
-<img src="https://i.ibb.co/67Ftgptv/Captura-de-tela-2025-07-04-215039-removebg-preview.png" alt="Imagem" />
-</a>
+![Logo da Imobiliária](imagens/Captura-de-tela-2025-07-04-215039-removebg-preview.png)
 
 
 ---
