@@ -64,9 +64,7 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 ---
 
 ## 4. Logo
-<img src="https://i.ibb.co/67Ftgptv/Captura-de-tela-2025-07-04-215039-removebg-preview.png" 
-     alt="Captura de tela" 
-     style="pointer-events: none; cursor: default;" />
+[![Captura de tela](https://i.ibb.co/67Ftgptv/Captura-de-tela-2025-07-04-215039-removebg-preview.png)](https://i.ibb.co/67Ftgptv/Captura-de-tela-2025-07-04-215039-removebg-preview.png)
 
 
 ---
