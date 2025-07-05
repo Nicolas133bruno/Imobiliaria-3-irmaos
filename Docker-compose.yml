@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: Imobiliaria
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+  app:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: Imobiliaria
+      DB_USER: root
+      DB_PASS: rootpassword
