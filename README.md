@@ -1,4 +1,4 @@
-# Imobiliária 3 Irmãos - Sistema de Gerenciamento Imobiliário
+# Imobiliária 3 Irmãos - Sistema de Gerenciamento Imobiliário 2 DS A
 
 **Autores:**  
 Felipe Marques  
@@ -70,9 +70,9 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 ---
 
 ## 5. Modelo Conceitual
-
+````
 *(espaço reservado para o modelo conceitual)*
-
+````
 ---
 
 ## 6. Modelo Lógico Relacional
@@ -92,15 +92,15 @@ Projeto de banco de dados relacional para organizar e controlar informações re
 ---
 
 ## 7. Modelo Lógico Reverso
-
+````
 *(espaço reservado para modelo lógico reverso)*
-
+````
 ---
 
 ## 8. MySQL - Script do Banco de Dados
-
-*(Inserir aqui o script completo para criação das tabelas e inserção de dados que você enviou.)*
-
+````
+(Inserir aqui o MY SQL
+````
 ---
 
 ## 9. Consultas (SELECT)
