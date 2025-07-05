@@ -110,6 +110,7 @@ SELECT i.id_imovel, i.tipo, i.valor, s.descricao_status
 FROM Imovel i 
 JOIN Status_Imovel s ON i.fk_id_status = s.id_status 
 WHERE s.descricao_status = 'Disponível para venda';
+````
 
 ## 10. Engenharia Reversa do MySQL
 
