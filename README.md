@@ -119,7 +119,7 @@ id_imovel referencia Imovel
 
 ## 7. Modelo Lógico Reverso
 
-(Adicionar modelo lógico reverso)
+![Modelo Lógico Reverso](imagens/Captura de tela 2025-07-04 204737.png)
 
 ---
 
