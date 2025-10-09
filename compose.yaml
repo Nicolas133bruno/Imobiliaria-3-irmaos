@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  mysql-db:
+    image: mysql:8.1
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Felipe123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  minha-app:
+    build: .
+    container_name: minha-app
+    depends_on:
+      - mysql-db
+    environment:
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_NAME: imobiliaria
+      DB_USER: root
+      DB_PASS: Felipe123
+
+volumes:
+  mysql-data:
