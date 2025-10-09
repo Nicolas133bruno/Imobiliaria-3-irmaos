@@ -15,7 +15,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   imobiliaria-app:
-    image: nicolas/imobiliaria:latest
+    build: .
     container_name: imobiliaria-app
     depends_on:
       - mysql-db
