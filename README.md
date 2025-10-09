@@ -145,6 +145,6 @@ Para rodar os testes unitários e de integração:
 
 ## 📬 Contato
 
-* **Felipe Marques:** [GitHub](https://github.com/FelipeMarques)
+* **Felipe Marques:** [GitHub](https://github.com/Felipe-flp)
 * **Nicolas Bruno:** [GitHub](https://github.com/Nicolas133bruno)
-* **Heitor Moreira:** [GitHub](https://github.com/HeitorMoreira)
+* **Heitor Moreira:** [GitHub](https://github.com/heitormoreira1)
