@@ -1,19 +1,32 @@
 from pydantic import BaseModel
-from typing import Optional
-from datetime import date, time
+from datetime import date
 from decimal import Decimal
+from typing import Optional, Generic, TypeVar, List
 
+# -------------------- Paginação genérica --------------------
+T = TypeVar("T")
+
+class PaginatedResponse(BaseModel, Generic[T]):
+    total: int
+    limit: int
+    offset: int
+    next: Optional[str]
+    previous: Optional[str]
+    items: List[T]
+
+# -------------------- Perfil --------------------
 class PerfilBase(BaseModel):
-    tipo_perf: str
+    tipo: str
 
 class PerfilCreate(PerfilBase):
     pass
 
 class Perfil(PerfilBase):
-    id_Perf: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- Usuario --------------------
 class UsuarioBase(BaseModel):
     nome: str
     cpf: str
@@ -23,16 +36,17 @@ class UsuarioBase(BaseModel):
     sexo: str
     login_usu: str
     senha_usu: str
-    fk_Perfil_id: int
+    fk_perfil_id: int
 
 class UsuarioCreate(UsuarioBase):
     pass
 
 class Usuario(UsuarioBase):
-    id_usuario: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- Corretor --------------------
 class CorretorBase(BaseModel):
     creci: str
     fk_usuario_id: int
@@ -41,38 +55,23 @@ class CorretorCreate(CorretorBase):
     pass
 
 class Corretor(CorretorBase):
-    id_corretor: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- StatusImovel --------------------
 class StatusImovelBase(BaseModel):
-    descricao_status: str
+    descricao: str
 
 class StatusImovelCreate(StatusImovelBase):
     pass
 
 class StatusImovel(StatusImovelBase):
-    id_status: int
+    id: int
     class Config:
         orm_mode = True
 
-class EnderecoBase(BaseModel):
-    logradouro: str
-    numero: str
-    bairro: str
-    complemento: Optional[str] = None
-    cidade: str
-    estado: str
-    cep: str
-
-class EnderecoCreate(EnderecoBase):
-    pass
-
-class Endereco(EnderecoBase):
-    id_endereco: int
-    class Config:
-        orm_mode = True
-
+# -------------------- Imovel --------------------
 class ImovelBase(BaseModel):
     area_total: Decimal
     quarto: int
@@ -81,62 +80,66 @@ class ImovelBase(BaseModel):
     valor: Decimal
     tipo: str
     desc_tipo_imovel: str
-    fk_id_status: int
-    fk_id_endereco: int
-    fk_id_corretor: int
+    fk_status_id: int
+    fk_corretor_id: int
 
 class ImovelCreate(ImovelBase):
     pass
 
 class Imovel(ImovelBase):
-    id_imovel: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- Visita --------------------
 class VisitaBase(BaseModel):
     data_visita: date
-    hora_visita: time
+    hora_visita: str
     status_visita: str
-    fk_id_usuario: int
-    fk_id_corretor: int
-    fk_id_imovel: int
+    fk_usuario_id: int
+    fk_corretor_id: int
+    fk_imovel_id: int
 
 class VisitaCreate(VisitaBase):
     pass
 
 class Visita(VisitaBase):
-    id_visita: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- Contrato Aluguel --------------------
 class ContratoAluguelBase(BaseModel):
     tipo: str
     data_inicio: date
     data_fim: date
     valor_mensalidade: Decimal
-    fk_id_usuario: int
-    fk_id_imovel: int
+    fk_usuario_id: int
+    fk_corretor_id: int
+    fk_imovel_id: int
 
 class ContratoAluguelCreate(ContratoAluguelBase):
     pass
 
 class ContratoAluguel(ContratoAluguelBase):
-    id_contrato_alug: int
+    id: int
     class Config:
         orm_mode = True
 
+# -------------------- Contrato Venda --------------------
 class ContratoVendaBase(BaseModel):
     tipo_venda: str
     data_inicio: date
     data_fim: date
     valor_negociado: Decimal
-    fk_id_usuario: int
-    fk_id_imovel: int
+    fk_usuario_id: int
+    fk_corretor_id: int
+    fk_imovel_id: int
 
 class ContratoVendaCreate(ContratoVendaBase):
     pass
 
 class ContratoVenda(ContratoVendaBase):
-    id_contrato_venda: int
+    id: int
     class Config:
         orm_mode = True

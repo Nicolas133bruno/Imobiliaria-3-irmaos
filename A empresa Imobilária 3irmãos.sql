@@ -186,3 +186,77 @@ WHERE s.descricao_status = 'Disponível para venda';
 select id_contrato_alug, valor_mensalidade
 from Contrato_Aluguel
 where valor_mensalidade > 1500;
+
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor);
+
+select distinct u.nome, u.cpf, u.telefone, u.email, u.sexo
+from Usuario u, Visita v
+where u.id_usuario = v.fk_id_usuario and v.status_visita like 'Realizada';
+
+select tipo, avg(valor) as media
+from Imovel
+group by tipo
+order by media desc;
+
+select id_contrato_alug, valor_mensalidade
+from Contrato_Aluguel
+where valor_mensalidade > 1500;
+
+SELECT Usuario.nome, Usuario_1.nome, Visita.status_visita, Visita.data_visita
+FROM Visita, Usuario, Corretor, Usuario Usuario_1
+WHERE Visita.fk_id_usuario = Usuario.id_usuario
+AND Visita.fk_id_corretor = Corretor.id_corretor
+AND Corretor.fk_usuario_id = Usuario_1.id_usuario;
+
+select Usuario.nome, COUNT(Visita.id_visita)
+from Visita
+join Usuario on Visita.fk_id_usuario = Usuario.id_usuario
+where Visita.status_visita = 'Realizada'
+GROUP BY Usuario.nome;
+
+select id_imovel,tipo, desc_tipo_imovel, valor
+from Imovel
+where valor <=300000;
+
+select i.id_imovel, i.tipo, i.valor, s.descricao_status
+FROM Imovel i
+JOIN Status_Imovel s ON i.fk_id_status = s.id_status
+WHERE s.descricao_status = 'Disponível para venda';
+
+SELECT cliente.nome,
+COUNT(v.id_visita) AS total_visitas_realizadas
+FROM Visita v
+JOIN Usuario cliente ON v.fk_id_usuario = cliente.id_usuario
+WHERE v.status_visita = 'Realizada'
+GROUP BY cliente.nome;
+
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor) and nome like 'M%';
+
+select * from Usuario
+where id_usuario IN (select fk_usuario_id from Corretor) and data_nascimento > '1990-01-01';
+
+select distinct u.nome, u.cpf, u.telefone, u.email, u.sexo
+from Usuario u, Visita v
+where u.id_usuario = v.fk_id_usuario and v.status_visita like 'Realizada' and u.sexo = 'M';
+
+select u.nome, v.data_visita
+from Usuario u, Visita v
+where u.id_usuario = v.fk_id_usuario and v.status_visita like 'Realizada';
+
+SELECT tipo,
+ AVG(valor) AS media_valor_aluguel
+FROM Imovel
+WHERE fk_id_status = 2
+GROUP BY tipo
+ORDER BY media_valor_aluguel DESC;
+
+SELECT u.nome,
+  COUNT(ca.id_contrato_alug) AS total_contratos_ativos
+FROM Usuario u
+LEFT JOIN Contrato_Aluguel ca ON u.id_usuario = ca.fk_id_usuario
+WHERE ca.data_fim >= CURDATE()
+GROUP BY u.nome
+ORDER BY total_contratos_ativos DESC;
+

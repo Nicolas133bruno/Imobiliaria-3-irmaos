@@ -1,27 +1,31 @@
+# main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# Importa os routers dos seus arquivos
-from routers.Contrato_Venda import router as contrato_router
-from routers.Corretor import router as corretor_router
-from routers.Imovel import router as imovel_router
-from routers.Perfil import router as perfil_router
+# Routers
 from routers.Usuario import router as usuario_router
+from routers.ContratoAluguel import  router as contrato_aluguel_router
+from routers.ContratoVenda import router as contrato_venda_router
+from routers.StatusImovel import router as status_imovel_router
+from routers.Imovel import router as imovel_router
 from routers.Visita import router as visita_router
+from routers.Corretor import router as corretor_router
+from routers.Perfil import router as perfil_router
+from routers.relatorios import router as relatorios_router
 
+# =========================
+# Criando a aplicação
+# =========================
 app = FastAPI(
     title="API Imobiliária 3 Irmãos",
-    description="API para gerenciar corretores, imóveis, perfis, usuários, visitas e contratos de venda",
-    version="1.0.0"
+    description="API para gerenciar corretores, imóveis, perfis, usuários, visitas e contratos",
+    version="1.0.0",
 )
 
-# Configurar CORS (se precisar, pode ajustar as origens permitidas)
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    # outras origens, se tiver front-end separado
-]
-
+# =========================
+# CORS
+# =========================
+origins = ["http://localhost", "http://localhost:8080"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -30,15 +34,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inclui os routers
-app.include_router(contrato_router)
+# =========================
+# Incluindo routers
+# =========================
+app.include_router(usuario_router)
+app.include_router(perfil_router)
 app.include_router(corretor_router)
 app.include_router(imovel_router)
-app.include_router(perfil_router)
-app.include_router(usuario_router)
 app.include_router(visita_router)
+app.include_router(contrato_aluguel_router)
+app.include_router(contrato_venda_router)
+app.include_router(status_imovel_router)  # Status Imóvel completo
+app.include_router(relatorios_router)
 
-# Rota raiz só para teste simples
+# =========================
+# Endpoint raiz
+# =========================
 @app.get("/")
 def root():
     return {"message": "API Imobiliária 3 Irmãos está no ar!"}
