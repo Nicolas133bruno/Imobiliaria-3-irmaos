@@ -110,13 +110,10 @@ Isso vai subir o backend e o banco MySQL em containers.
 
 ---
 
-## 📄 Licença
-
-MIT License – veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 📬 Contato
 
 * **Felipe Marques:** [GitHub](https://github.com/Felipe-flp)
 * **Nicolas Bruno:** [GitHub](https://github.com/Nicolas133bruno)
 * **Heitor Moreira:** [GitHub](https://github.com/heitormoreira1)
+
 
