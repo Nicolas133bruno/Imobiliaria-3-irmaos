@@ -267,13 +267,45 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .admin-sidebar {
-        margin-left: -250px;
+        width: 220px;
     }
     
-    .admin-sidebar.show {
-        margin-left: 0;
+    .admin-main {
+        margin-left: 220px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 200px;
+    }
+    
+    .admin-main {
+        margin-left: 200px;
+    }
+    
+    .admin-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: fixed;
+        left: -250px;
+        width: 250px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .admin-sidebar.collapsed {
+        left: 0;
     }
     
     .admin-main {
@@ -289,13 +321,60 @@
     }
     
     .header-content {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        flex-direction: row;
+        gap: 15px;
+        text-align: left;
     }
     
     .header-actions {
-        justify-content: center;
+        justify-content: flex-end;
+    }
+    
+    /* Overlay para mobile */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    .admin-sidebar.collapsed ~ .sidebar-overlay {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-header {
+        padding: 15px 20px;
+    }
+    
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .admin-content {
+        padding: 10px;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.8rem;
     }
 }
 

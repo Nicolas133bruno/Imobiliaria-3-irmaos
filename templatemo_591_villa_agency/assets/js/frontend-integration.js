@@ -1,20 +1,79 @@
-// Frontend Integration for Imobiliaria 3 Irmãos
+// Frontend Integration for Imobiliaria 3 Irmãos - Sistema Profissional
 class FrontendIntegration {
     constructor() {
         this.api = window.ImobiliariaAPI;
+        this.isApiAvailable = false;
         this.init();
     }
 
     async init() {
-        await this.loadProperties();
-        await this.updateStats();
+        console.log('🚀 Inicializando integração frontend-backend...');
+        
+        // Testar conexão com API primeiro
+        this.isApiAvailable = await this.testApiConnection();
+        
+        if (this.isApiAvailable) {
+            console.log('✅ API disponível - Carregando dados dinâmicos');
+            await this.loadDynamicData();
+        } else {
+            console.warn('⚠️ API não disponível - Usando dados estáticos');
+            this.showFallbackContent();
+        }
+        
         this.bindEvents();
+        this.addAdminLink();
+    }
+
+    async testApiConnection() {
+        try {
+            console.log('🔗 Testando conexão com API...');
+            const response = await fetch(`${this.api.baseUrl}/usuarios/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                console.log('✅ Conexão com API estabelecida com sucesso');
+                return true;
+            } else {
+                console.warn('⚠️ API retornou status:', response.status);
+                return false;
+            }
+        } catch (error) {
+            console.error('❌ Erro na conexão com API:', error);
+            return false;
+        }
+    }
+
+    async loadDynamicData() {
+        try {
+            await Promise.all([
+                this.loadProperties(),
+                this.updateStats(),
+                this.loadFeaturedContent()
+            ]);
+        } catch (error) {
+            console.error('Erro ao carregar dados dinâmicos:', error);
+            this.showFallbackContent();
+        }
     }
 
     async loadProperties() {
         try {
+            console.log('🏠 Carregando propriedades da API...');
             const imoveis = await this.api.getImoveis();
-            this.renderProperties(imoveis);
+            
+            if (imoveis && imoveis.length > 0) {
+                this.renderProperties(imoveis);
+                this.updatePropertyCount(imoveis.length);
+                console.log(`✅ ${imoveis.length} propriedades carregadas`);
+            } else {
+                console.warn('ℹ️ Nenhuma propriedade encontrada na API');
+                this.showFallbackProperties();
+            }
         } catch (error) {
             console.error('Erro ao carregar imóveis:', error);
             this.showFallbackProperties();

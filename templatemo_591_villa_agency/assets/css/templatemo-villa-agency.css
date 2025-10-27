@@ -78,7 +78,16 @@ header, nav, section, article, aside, footer, hgroup {
 
 html, body {
   font-family: 'Poppins', sans-serif;
+  -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* text-size-adjust removed for Firefox/Safari compatibility */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* text-size-adjust removed for Firefox/Safari compatibility */
+  -ms-text-size-adjust: 100%;
+  /* text-size-adjust removed for Firefox/Safari compatibility */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1127,6 +1136,7 @@ Best Deal Style
   color: #1e1e1e;
   font-weight: 700;
   float: right;
+  display: block;
   display: inline-block;
 }
 

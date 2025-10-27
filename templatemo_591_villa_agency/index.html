@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="assets/css/templatemo-villa-agency.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+    <!-- Integration CSS -->
+    <link rel="stylesheet" href="css/integration.css">
 <!--
 
 TemplateMo 591 villa agency
@@ -577,6 +580,19 @@ https://templatemo.com/tm-591-villa-agency
   <script src="assets/js/owl-carousel.js"></script>
   <script src="assets/js/counter.js"></script>
   <script src="assets/js/custom.js"></script>
+  
+  <!-- API Integration -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/frontend-integration.js"></script>
+  
+  <script>
+    // Inicializar integração frontend quando o documento estiver pronto
+    document.addEventListener('DOMContentLoaded', function() {
+      const frontendIntegration = new FrontendIntegration();
+      frontendIntegration.init();
+    });
+  </script>
 
   </body>
 </html>

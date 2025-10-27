@@ -47,6 +47,7 @@
 .flexslider .slides > li {
   display: none;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .flexslider .slides img {
   width: 100%;
@@ -91,7 +92,9 @@ html[xmlns] .flexslider .slides {
 }
 .flexslider .slides img {
   height: auto;
+  -webkit-user-select: none;
   -moz-user-select: none;
+  user-select: none;
 }
 .flex-viewport {
   max-height: 2000px;
@@ -105,6 +108,9 @@ html[xmlns] .flexslider .slides {
   max-height: 300px;
 }
 @-moz-document url-prefix() {
+
+
+
   .loading .flex-viewport {
     max-height: none;
   }
@@ -113,7 +119,7 @@ html[xmlns] .flexslider .slides {
   margin-right: 5px;
 }
 .flex-direction-nav {
-  *height: 0;
+  height: 0;
 }
 .flex-direction-nav a {
   text-decoration: none;
@@ -209,7 +215,7 @@ html[xmlns] .flexslider .slides {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 .flex-control-paging li a {
   width: 11px;
@@ -252,7 +258,9 @@ html[xmlns] .flexslider .slides {
   display: block;
   opacity: .7;
   cursor: pointer;
+  -webkit-user-select: none;
   -moz-user-select: none;
+  user-select: none;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -ms-transition: all 1s ease;
