@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: imobiliaria-api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8080:8000"
+    environment:
+      DB_HOST: db
+      DB_USER: imobiliaria_user
+      DB_PASSWORD: imobiliaria_pass
+      DB_NAME: imobiliaria_db
+      DB_PORT: 3306
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: mysql:8.0
+    container_name: imobiliaria-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: imobiliaria_db
+      MYSQL_USER: imobiliaria_user
+      MYSQL_PASSWORD: imobiliaria_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
