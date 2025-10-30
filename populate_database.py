@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Script para popular o banco de dados com dados de exemplo
 baseados no schema SQL da Imobiliaria 3 Irmaos
@@ -21,9 +20,9 @@ def populate_perfis(db: Session):
     print("Populando perfis...")
     
     perfis = [
-        {"id_Perf": 1, "tipo_perf": "Administrador"},
-        {"id_Perf": 2, "tipo_perf": "Corretor"},
-        {"id_Perf": 3, "tipo_perf": "Cliente"}
+        {"id_perf": 1, "tipo_perf": "Administrador"},
+        {"id_perf": 2, "tipo_perf": "Corretor"},
+        {"id_perf": 3, "tipo_perf": "Cliente"}
     ]
     
     for perfil_data in perfis:
@@ -48,7 +47,7 @@ def populate_usuarios(db: Session):
             "sexo": "M",
             "login_usu": "joao.silva",
             "senha_usu": "senha123",
-            "fk_Perfil_id": 1
+            "perfil_id": 1
         },
         {
             "id_usuario": 2,
@@ -60,7 +59,7 @@ def populate_usuarios(db: Session):
             "sexo": "F",
             "login_usu": "maria.santos",
             "senha_usu": "senha456",
-            "fk_Perfil_id": 2
+            "perfil_id": 2
         },
         {
             "id_usuario": 3,
@@ -72,7 +71,7 @@ def populate_usuarios(db: Session):
             "sexo": "M",
             "login_usu": "pedro.oliveira",
             "senha_usu": "senha789",
-            "fk_Perfil_id": 3
+            "perfil_id": 3
         }
     ]
     
@@ -91,7 +90,7 @@ def populate_corretores(db: Session):
         {
             "id_corretor": 1,
             "creci": "12345-F",
-            "fk_usuario_id": 2
+            "usuario_id": 2
         }
     ]
     
@@ -168,9 +167,9 @@ def populate_imoveis(db: Session):
             "valor": 450000.00,
             "tipo": "Apartamento",
             "desc_tipo_imovel": "Apartamento de 3 quartos no centro",
-            "fk_id_status": 1,
-            "fk_id_endereco": 1,
-            "fk_id_corretor": 1
+            "status_id": 1,
+            "endereco_id": 1,
+            "corretor_id": 1
         },
         {
             "id_imovel": 2,
@@ -181,9 +180,9 @@ def populate_imoveis(db: Session):
             "valor": 800000.00,
             "tipo": "Casa",
             "desc_tipo_imovel": "Casa de 4 quartos na Paulista",
-            "fk_id_status": 1,
-            "fk_id_endereco": 2,
-            "fk_id_corretor": 1
+            "status_id": 1,
+            "endereco_id": 2,
+            "corretor_id": 1
         }
     ]
     
@@ -204,9 +203,9 @@ def populate_visitas(db: Session):
             "data_visita": date(2024, 1, 15),
             "hora_visita": time(14, 30),
             "status_visita": "Agendada",
-            "fk_id_usuario": 3,
-            "fk_id_corretor": 1,
-            "fk_id_imovel": 1
+            "usuario_id": 3,
+            "corretor_id": 1,
+            "imovel_id": 1
         }
     ]
     
@@ -228,8 +227,8 @@ def populate_contratos(db: Session):
         data_inicio=date(2024, 2, 1),
         data_fim=date(2025, 1, 31),
         valor_mensalidade=2500.00,
-        fk_id_usuario=3,
-        fk_id_imovel=1
+        usuario_id=3,
+        imovel_id=1
     )
     db.add(contrato_aluguel)
     
@@ -240,8 +239,8 @@ def populate_contratos(db: Session):
         data_inicio=date(2024, 3, 1),
         data_fim=date(2024, 3, 1),
         valor_negociado=780000.00,
-        fk_id_usuario=3,
-        fk_id_imovel=2
+        usuario_id=3,
+        imovel_id=2
     )
     db.add(contrato_venda)
     
